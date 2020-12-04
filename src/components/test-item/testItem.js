@@ -5,43 +5,34 @@ import Checkbox from '../checkbox';
 
 // {'first-checkbox': true, 'second-checkbox' false}
 function TestItem(props) {
- const {text, answers, index, onChange, checkedItems, onCorrectChange} = props;
- let correctAnswers = answers.map((item, i) => {
+  const {text, answers, index, onChangeTestValue, checkedItems, selectedAnswer} = props;
+  let correctAnswers = answers.filter((item) => {
    if (item.correct) {
      return item
    }
- });
+  });
+  console.log(correctAnswers);
 
-// let correct = this.props.correct;
+  const allAnswers = answers.map((answer, i) => {
+    let input;
+    let checked = checkedItems.get(answer.name);
 
-
-
- const allAnswers = answers.map((answer, i) => {
-   let input;
-
-   let checked = checkedItems.get(answer.name);
-   let correct = !answer.correct;
-   let currentObjectValue = checkedItems.get((answer.name));
-    console.log(answer);
-    console.log(currentObjectValue);
-    console.log(answer.correct);
-   if (currentObjectValue != answer.correct) {
-     correct = false;
-   } else {
-     correct = true//  onChange=(e => onCorrectChange(e, i))
-   }
-   console.log(correct);
-
-   if(correctAnswers.length > 1) {
+   if(Object.keys(correctAnswers).length > 1) {
      input = <Checkbox
-       answer={answer.label}
+       answer={answer}
        name={answer.name}
-       onChange={onChange}
+       onChangeTestValue={onChangeTestValue}
        checked={checked}
-       correct={correct}
+       correct={answer.correct}
+       index={index}
      />;
    } else  {
-     input = <Radio answer={answer.label}/>;
+     input = <Radio
+      answer={answer}
+      onChangeTestValue={onChangeTestValue}
+      index={index}
+      selectedAnswer={selectedAnswer}
+      />;
    }
    return(
      <li key={i}>

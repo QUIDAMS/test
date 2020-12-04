@@ -1,19 +1,18 @@
 import React from 'react';
 
-function Radio(props) {
-  const {answer} = this.props;
-  return(
-    <React.Fragment>
-      <input
-        type='radio'
-        name='answer'
-        value={answer}
-        // onChange={}
-        // checked={}
-        />
-    </React.Fragment>
-  )
-}
+const Radio = ({answer, onChangeTestValue, selectedAnswer, index}) => {
+    return(
+      <React.Fragment>
+        <input
+          type='radio'
+          name='radio'
+          onChange={e => onChangeTestValue(e, answer.name, true)}
+          />
+      </React.Fragment>
+    )
+  }
+
+
 export default Radio;
 
 

@@ -1,13 +1,13 @@
 import React from 'react';
 
-const Checkbox = ({answer, checked = false, onChange, name, correct}) => {
+const Checkbox = ({answer, checked = false, onChangeTestValue, correct, index}) => {
   return(
     <React.Fragment>
     <input
       type='checkbox'
-      name={name}
-      value={answer}
-      onChange={(e) => onChange(e, correct)}
+      name={answer.name}
+      value={answer.label}
+      onChange={(e) => onChangeTestValue(e, answer.name, false)}
       checked={checked}
     />
     </React.Fragment>
